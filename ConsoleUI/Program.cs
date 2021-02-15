@@ -31,7 +31,7 @@ namespace ConsoleUI
                 Console.WriteLine("{0} {1} {2} {3}", item.CarName, item.BrandName, item.ColorName, item.DailyPrice);
             }
         }
-        void CarAdd() {
+        static void CarAdd() {
 
             CarManager carManager = new CarManager(new EfCarDal());
 
@@ -42,7 +42,7 @@ namespace ConsoleUI
             carManager.Add(car);
         }
 
-        void CarGet() {
+        static void CarGet() {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetAll();
             foreach (var item in result.Data)
