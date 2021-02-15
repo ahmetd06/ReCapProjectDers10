@@ -12,21 +12,21 @@ namespace ConsoleUI
         {
             //CarAdd()
             //CarGet()
-            //CarDetailsGet();
-            //CarGetByID(3);
+            CarDetailsGet();
+            CarGetByID(3);
         }
-        void CarGetByID(int carID) {
+        static void CarGetByID(int carID) {
             CarManager carManager = new CarManager(new EfCarDal());
 
             var result2 = carManager.GetById(carID);
 
-            Console.WriteLine("id si {0} olan kayıt:{1}", carID,result2.Description);
+            Console.WriteLine("id si {0} olan kayıt:{1}", carID,result2.Data.Description);
         }
-        void CarDetailsGet() {
+        static void CarDetailsGet() {
             CarManager carManager = new CarManager(new EfCarDal());
             var result3 = carManager.GetCarDetails();
 
-            foreach (var item in result3)
+            foreach (var item in result3.Data)
             {
                 Console.WriteLine("{0} {1} {2} {3}", item.CarName, item.BrandName, item.ColorName, item.DailyPrice);
             }
@@ -45,7 +45,7 @@ namespace ConsoleUI
         void CarGet() {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetAll();
-            foreach (var item in result)
+            foreach (var item in result.Data)
             {
                 Console.WriteLine("{0} {1} {2} {3} {4}", item.Id, item.BrandId, item.ModelYear, item.DailyPrice, item.Description);
             }
