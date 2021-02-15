@@ -8,12 +8,15 @@ namespace Core.Utilities.Results
     {
        
         
-        public Result(bool success, string message)
+        public Result(bool success, string message):this(success) //this tek parametreli conscructoru çalıştırmak için
         {
             Message = message;
+           
+        }
+        public Result(bool success)
+        {
             Success = success;
         }
-
         //Readonly ler constructorda set edilebilirler
         public bool Success { get; }
 

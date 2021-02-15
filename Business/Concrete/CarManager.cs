@@ -27,12 +27,13 @@ namespace Business.Concrete
             {
                 Console.WriteLine("Günlük ücret 0'dan büyük ve açıklama iki karakterden uzun olmalıdır.");
             }
-            return new Result(true, "Eklendi");
+            return new SuccessResult("Eklendi");
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult("Silindi");
         }
 
         public List<Car> GetAll()
@@ -63,6 +64,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult("Güncellendi");
         }
     }
 }
