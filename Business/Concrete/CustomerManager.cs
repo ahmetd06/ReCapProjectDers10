@@ -9,11 +9,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ICustomerManager : ICustomerService
+    public class CustomerManager : ICustomerService
     {
         ICustomerDal _customerDal;
 
-        public ICustomerManager(ICustomerDal customerDal)
+        public CustomerManager(ICustomerDal customerDal)
         {
             _customerDal = customerDal;
         }
@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         public IDataResult<Customer> GetById(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.UserId == id));
+            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.Id == id));
         }
 
         public IResult Update(Customer x)

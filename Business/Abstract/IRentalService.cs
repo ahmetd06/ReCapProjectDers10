@@ -1,7 +1,9 @@
 ﻿using Core.Utilities.Results;
 using Entities;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Abstract
@@ -13,5 +15,8 @@ namespace Business.Abstract
         IResult Add(Rental x);
         IResult Update(Rental x);
         IResult Delete(Rental x);
+        IResult CheckReturnDate(int carId);
+        IResult RentACar(Car car, Customer customer);
+        IDataResult<List<RentDetailDto>> GetRentDetailList();
     }
 }

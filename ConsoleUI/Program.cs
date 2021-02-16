@@ -1,5 +1,6 @@
 ﻿using System;
 using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities;
@@ -10,10 +11,33 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarAdd()
-            //CarGet()
+            //CarAdd();
+            //CarGet();
             //CarDetailsGet();
             //CarGetByID(3);
+            //AddNewCustomer();
+            AddNewRent();
+        }
+        static void AddNewRent()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            CarManager carManager = new CarManager(new EfCarDal());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            Customer customer = customerManager.GetById(1).Data;
+            Car car = carManager.GetById(1).Data;
+
+            IResult result= rentalManager.RentACar(car, customer);
+
+            Console.WriteLine(result.Message);
+        }
+        static void AddNewCustomer()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            Customer customer = new Customer {  UserId=1,CompanyName = "TBT" };
+            customerManager.Add(customer);
+
         }
         static void CarGetByID(int carID) {
             CarManager carManager = new CarManager(new EfCarDal());
@@ -35,10 +59,10 @@ namespace ConsoleUI
 
             CarManager carManager = new CarManager(new EfCarDal());
 
-            Car car = new Car { BrandId = 200, ColorId = 123, DailyPrice = 110, ModelYear = 2006, Description = "Cordoba" };
+            Car car = new Car { BrandId = 3, ColorId = 4, DailyPrice = 50, ModelYear = 2006, Description = "Deneme" };
             carManager.Add(car);
 
-            car = new Car { BrandId = 300, ColorId = 200, DailyPrice = 150, ModelYear = 2020, Description = "Focus" };
+            car = new Car { BrandId = 3, ColorId = 2, DailyPrice = 160, ModelYear = 2010, Description = "Test" };
             carManager.Add(car);
         }
 
