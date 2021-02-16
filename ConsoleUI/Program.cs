@@ -12,8 +12,8 @@ namespace ConsoleUI
         {
             //CarAdd()
             //CarGet()
-            CarDetailsGet();
-            CarGetByID(3);
+            //CarDetailsGet();
+            //CarGetByID(3);
         }
         static void CarGetByID(int carID) {
             CarManager carManager = new CarManager(new EfCarDal());
