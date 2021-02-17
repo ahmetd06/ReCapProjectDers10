@@ -4,6 +4,7 @@ using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities;
+using Entities.Dtos;
 
 namespace ConsoleUI
 {
@@ -11,14 +12,36 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarAdd();
-            //CarGet();
-            //CarDetailsGet();
-            //CarGetByID(3);
-            //AddNewCustomer();
-            AddNewRent();
+            //AracEkle();
+            //TumarAraclariListele();
+            //AracDetayiGetir();
+            //AracGetir(3);
+            //YeniMusteriEkle();
+            //YeniBirKiralamaYap();
+            TumKiralamaIslemleriniListele();
+            //YeniBirKiralamaYap();
+            //KiradanDonusTarihiGuncelle();
+            //TumKiralamaIslemleriniListele();
+
+
         }
-        static void AddNewRent()
+        static void KiradanDonusTarihiGuncelle()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            IResult result = rentalManager.UpdateReturnDate(1, DateTime.Now.Date);
+
+        }
+        static void TumKiralamaIslemleriniListele()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetRentDetailList();
+            foreach (var item in result.Data)
+            {
+                Console.WriteLine("Kira No: {0} \t Kiralama Tarihi: {1} \t Kiradan Dönüş Tarihi: {2} \t Müşteri: {3} \t Araç: {4}", 
+                    item.RentId, item.RentDate, item.ReturnDate, item.CustomerName,item.CarDescription);
+            }
+        }
+        static void YeniBirKiralamaYap()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             CarManager carManager = new CarManager(new EfCarDal());
@@ -31,7 +54,7 @@ namespace ConsoleUI
 
             Console.WriteLine(result.Message);
         }
-        static void AddNewCustomer()
+        static void YeniMusteriEkle()
         {
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
@@ -39,14 +62,14 @@ namespace ConsoleUI
             customerManager.Add(customer);
 
         }
-        static void CarGetByID(int carID) {
+        static void AracGetir(int carID) {
             CarManager carManager = new CarManager(new EfCarDal());
 
             var result2 = carManager.GetById(carID);
 
             Console.WriteLine("id si {0} olan kayıt:{1}", carID,result2.Data.Description);
         }
-        static void CarDetailsGet() {
+        static void AracDetayiGetir() {
             CarManager carManager = new CarManager(new EfCarDal());
             var result3 = carManager.GetCarDetails();
 
@@ -55,7 +78,7 @@ namespace ConsoleUI
                 Console.WriteLine("{0} {1} {2} {3}", item.CarName, item.BrandName, item.ColorName, item.DailyPrice);
             }
         }
-        static void CarAdd() {
+        static void AracEkle() {
 
             CarManager carManager = new CarManager(new EfCarDal());
 
@@ -66,7 +89,7 @@ namespace ConsoleUI
             carManager.Add(car);
         }
 
-        static void CarGet() {
+        static void TumarAraclariListele() {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetAll();
             foreach (var item in result.Data)

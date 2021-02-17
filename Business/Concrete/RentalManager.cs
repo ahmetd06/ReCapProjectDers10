@@ -72,7 +72,15 @@ namespace Business.Concrete
 
         public IDataResult<List<RentDetailDto>> GetRentDetailList()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<RentDetailDto>>(_rentalDal.GetAllRentDetails());
+        }
+
+        public IResult UpdateReturnDate(int rentId, DateTime returnDate)
+        {
+            Rental rental = _rentalDal.Get(p => p.Id == rentId);
+            rental.ReturnDate = returnDate;
+            _rentalDal.Update(rental);
+            return new SuccessResult();
         }
     }
 }

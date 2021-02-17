@@ -18,5 +18,6 @@ namespace Business.Abstract
         IResult CheckReturnDate(int carId);
         IResult RentACar(Car car, Customer customer);
         IDataResult<List<RentDetailDto>> GetRentDetailList();
+        IResult UpdateReturnDate(int rentId,DateTime returnDate);
     }
 }

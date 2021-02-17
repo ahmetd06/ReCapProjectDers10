@@ -13,9 +13,9 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
            
-            //optionsBuilder.UseSqlServer(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = ReCapProject; Integrated Security = SSPI;");
+            optionsBuilder.UseSqlServer(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = ReCapProject; Integrated Security = SSPI;");
           
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=ReCapProject;User ID=sa;Password=reallyStrongPwd123;");
+           // optionsBuilder.UseSqlServer(@"Server=localhost;Database=ReCapProject;User ID=sa;Password=reallyStrongPwd123;");
 
         }
 
